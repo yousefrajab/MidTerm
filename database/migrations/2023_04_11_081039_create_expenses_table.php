@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('expenses', function (Blueprint $table) {
             $table->id();
-            $table->string('Item');
-            $table->string('ItemCategory');
-            $table->string('PurchaseDate');
-            $table->string('Amount');
+            $table->string('item');
+            $table->string('itemCategory');
+            $table->string('purchaseDate');
+            $table->string('amount');
             $table->timestamps();
         });
     }

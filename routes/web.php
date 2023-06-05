@@ -1,6 +1,6 @@
 <?php
 
-use App\Http\Controllers\ExpenseController;
+use App\Http\Controllers\ExpensesController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,21 +14,39 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/dashboard', function () {
+    return view('layouts.dashboard');
+})->name('dashboard');
 
 
-Route::get('/', [ExpenseController::class, 'index'])->name('expenses');
-
-Route::post('/create', [ExpenseController::class, 'create']);
-Route::get('/create', [ExpenseController::class, 'create']);
-Route::post('/delete/{id}', [ExpenseController::class, 'delete']);
+// Route::get('/expenses', function () {
+//     return view('front.expenses');
+// });
 
 
-Route::put('update/{id}', [ExpenseController::class, 'update'])->name('update');
-Route::get('update/{id}', [ExpenseController::class, 'update'])->name('update');
+// Route::get('/create_expenses', function () {
+//     return view('front.create_expenses');
+// });
 
 
-Route::patch('edit/{id}', [ExpenseController::class, 'edit'])->name('edit');
-Route::get('edit/{id}', [ExpenseController::class, 'edit'])->name('edit');
+
+
+Route::get('/', [ExpensesController::class, 'index'])->name('expenses');
+
+
+Route::delete('delete/{id}', [ExpensesController::class, 'destroy'])->name('delete');
+
+Route::post('create', [ExpensesController::class, 'create'])->name('create');
+Route::get('create', [ExpensesController::class, 'create'])->name('create');
+
+
+
+Route::post('store', [ExpensesController::class, 'store'])->name('store');
+Route::get('store', [ExpensesController::class, 'store'])->name('store');
+
+
+Route::get('update/{id}', [ExpensesController::class, 'update'])->name('update');
+Route::post('update/{id}', [ExpensesController::class, 'update'])->name('update');
+
+Route::get('edit/{id}', [ExpensesController::class, 'edit'])->name('edit');
+Route::post('edit/{id}', [ExpensesController::class, 'edit'])->name('edit');
